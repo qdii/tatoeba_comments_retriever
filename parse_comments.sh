@@ -53,13 +53,14 @@ parse_specific_comment()
 	    s/ *<a id="comment-\([0-9]*\).*" \/>//
 	    /<div class="author">/,/<\/div>/ {
 	    	/<div class="author">/ d
-	   	s/.*<a[^>]*>/AUTHOR=/
-		s/<\/a>        <\/div>//
+		    s/.*<a[^>]*>/AUTHOR=/
+		    s/<\/a>        <\/div>//
    	        p
 	   }
 	   /<div class="commentText">/,/<\/div>/ {
             /<div class="commentText">/ N
             s/.*<div class="commentText">[[:space:]]*/CONTENTS=/
+            /^[[:space:]]*<\/div>/ d
             s/[[:space:]]*<\/div>//
             p
 	   }

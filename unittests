@@ -12,7 +12,7 @@ testRetrieveAuthor()
 
 testRetrieveText()
 {
-  local text=`$parser -t 89201 227751`
+  local text=`$parser -t 8901 227751`
   assertEquals "$text" "OK"
 }
 
