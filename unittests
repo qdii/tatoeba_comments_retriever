@@ -1,0 +1,19 @@
+#!/bin/sh
+parser="./parse_comments.sh"
+
+testRetrieveAuthor()
+{
+  local author=`$parser -a 8901 227734`
+  assertEquals "$author" "Rovo"
+
+  author=`$parser -a 8901 227751`
+  assertEquals "$author" "Petro1"
+}
+
+testRetrieveText()
+{
+  local text=`$parser -t 89201 227751`
+  assertEquals "$text" "OK"
+}
+
+. shunit2
