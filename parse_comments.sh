@@ -22,7 +22,7 @@ strip_html=1
 
 usage()
 {
-    echo -e "Usage: $0 [OPTION] <SENTENCE> <COMMENT>"
+    echo -e "Usage: $0 [OPTION] <SENTENCE> [COMMENT]"
     echo -e "\tWhere SENTENCE is a number identifying the sentence"
     echo -e "\tand COMMENT is a number identifying the comment, in the sentence"
     echo -e "\tAnd OPTION is any of the following:"
