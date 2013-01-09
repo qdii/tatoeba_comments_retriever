@@ -198,17 +198,17 @@ retrieve_text()
 }
 
 
-params=`getopt -o latuh --long list,author,text,unicode,help -n $0 -- "$@"`
+params=`getopt -o latuh --long list,author,text,unicode,help,no-strip -n $0 -- "$@"`
 [ $? != 0 ] && exit 1
 
 eval set -- "$params"
 while true ; do
 	case "$1" in
 		-h|--help) usage ; exit 0 ; shift ;;
-        -l|--list) selected_action=${action_list_ids}; shift ;;
-        -a|--author) selected_action=${action_retrieve_author}; shift ;;
-        -t|--text) selected_action=${action_retrieve_text}; shift ;;
-        -u|--unicode) strip_html=1; shift ;;
+        	-l|--list) selected_action=${action_list_ids}; shift ;;
+        	-a|--author) selected_action=${action_retrieve_author}; shift ;;
+        	-t|--text) selected_action=${action_retrieve_text}; shift ;;
+        	-u|--unicode) strip_html=1; shift ;;
 		--no-strip) strip_html=0; shift ;;
 		--) shift ; break ;;
 		*) echo "Internal error!" ; exit 1 ;;
