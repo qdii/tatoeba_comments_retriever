@@ -170,34 +170,6 @@ retrieve()
 
 #__________________________________________________________________________________________________
 
-retrieve_author()
-{
-    local sentence_id=$1
-    local comment_id=$2
-
-    if [ "$comment_id" = "0" ]
-    then
-        retrieve_page_and_strip $sentence_id $strip_html | parse_all_comments | extract_author_from_parsed_comment
-    else
-        retrieve_page_and_strip $sentence_id $strip_html | parse_specific_comment $comment_id | extract_author_from_parsed_comment
-    fi
-}
-#__________________________________________________________________________________________________
-
-retrieve_text()
-{
-    local sentence_id=$1
-    local comment_id=$2
-
-    if [ "$comment_id" = "0" ]
-    then
-        retrieve_page_and_strip $sentence_id $strip_html | parse_all_comments | extract_text_from_parsed_comment
-    else
-        retrieve_page_and_strip $sentence_id $strip_html | parse_specific_comment $comment_id | extract_text_from_parsed_comment
-    fi
-}
-
-
 params=`getopt -o latuh --long list,author,text,unicode,help,no-strip -n $0 -- "$@"`
 [ $? != 0 ] && exit 1
 
@@ -225,7 +197,7 @@ echo $retrieved_page | parse_specific_comment $comment_id
 
 case "${selected_action}" in
     ${action_list_ids}) retrieve_page_and_strip $sentence_id 0 | list_ids_from_parsed_comment ;;
-    ${action_retrieve_author}) retrieve_author $sentence_id $comment_id ;;
+    ${action_retrieve_author}) retrieve $sentence_id $comment_id $selected_action $strip_html;;
     ${action_retrieve_text}) retrieve $sentence_id $comment_id $selected_action $strip_html ;;
     ${action_retrieve_everything}) retrieve $sentence_id $comment_id $selected_action $strip_html ;;
 esac
